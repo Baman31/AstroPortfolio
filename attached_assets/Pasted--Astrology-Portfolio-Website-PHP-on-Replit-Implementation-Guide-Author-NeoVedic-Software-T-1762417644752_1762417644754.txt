@@ -1,0 +1,505 @@
+# Astrology Portfolio Website — PHP on Replit (Implementation Guide)
+
+Author: NeoVedic Software
+Target Stack: PHP 8.x + SQLite (PDO) + TailwindCSS + Alpine.js
+Hosting: Replit (Always On)
+
+---
+
+## 1) Project Overview
+
+**Goal:** Build a modern, fast, secure portfolio site for a professional astrologer (India-based, global clientele) with booking, payments, testimonials, blog, and multilingual support.
+
+**Core Modules**
+
+* Public: Home, About, Services (grid + detail), Pricing, Testimonials, Blog, Gallery, Contact
+* Booking & Payments: Consultation booking + Razorpay/Stripe checkout + timezone support
+* Admin (CMS): Manage services, slots, bookings, testimonials, blog posts, media gallery, site settings
+* Extras: Newsletter signup, SEO metadata, WhatsApp quick-contact, language switcher (EN/HI)
+
+**Non-Functional Requirements**
+
+* Performance (TTFB < 300ms on cached pages), accessibility (WCAG AA), responsive, SEO-ready, secure inputs, backups
+
+---
+
+## 2) Replit Setup
+
+1. **Create Repl** → Template: *PHP + Apache (Nix)*.
+2. **Set Run Command** (if needed): use default (`apachectl -DFOREGROUND`).
+3. **Enable Always On** (if on a paid plan) to keep the service responsive.
+4. **Add `.replit` (optional)** for environment & build steps.
+5. **Install Composer**
+
+   ```bash
+   curl -sS https://getcomposer.org/installer | php
+   php composer.phar init
+   php composer.phar require vlucas/phpdotenv symfony/var-dumper respect/validation paragonie/anti-csrf phpmailer/phpmailer guzzlehttp/guzzle
+   ```
+6. **Node (for Tailwind)**: In Nix-based Repl, Node is available. Initialize once:
+
+   ```bash
+   npm init -y
+   npm install -D tailwindcss postcss autoprefixer
+   npx tailwindcss init -p
+   ```
+
+---
+
+## 3) Project Structure
+
+```
+/ (project root)
+├── public/                # Web root (Apache DocumentRoot)
+│   ├── index.php          # Front controller
+│   ├── assets/
+│   │   ├── css/
+│   │   │   └── app.css
+│   │   ├── js/
+│   │   │   └── app.js
+│   │   └── images/
+│   └── uploads/           # Media uploads (with .htaccess rules)
+├── app/
+│   ├── Core/              # Router, Controller base, View engine, CSRF, Auth
+│   ├── Controllers/
+│   ├── Models/
+│   ├── Views/             # PHP templates (layout + partials + pages)
+│   ├── Middleware/
+│   └── Helpers/
+├── config/
+│   ├── app.php
+│   └── routes.php
+├── storage/
+│   ├── database.sqlite    # SQLite DB
+│   ├── logs/app.log
+│   └── backups/
+├── scripts/
+│   ├── migrate.php
+│   └── seed.php
+├── .env                   # Environment variables
+├── composer.json
+├── package.json
+├── tailwind.config.js
+├── postcss.config.js
+└── .htaccess (root + public/.htaccess)
+```
+
+**Apache Rewrite** (`public/.htaccess`):
+
+```
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+```
+
+---
+
+## 4) Environment Variables (`.env`)
+
+```
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://<your-repl-subdomain>.repl.co
+SESSION_SECRET=<random-64-characters>
+
+DB_DRIVER=sqlite
+DB_PATH=/home/runner/<repl-name>/storage/database.sqlite
+
+MAIL_HOST=smtp-relay
+MAIL_PORT=587
+MAIL_USERNAME=apikey
+MAIL_PASSWORD=<secret>
+MAIL_FROM=hello@clientdomain.com
+MAIL_FROM_NAME="Acharya <Name>"
+
+RZP_KEY_ID=<razorpay_key_id>
+RZP_KEY_SECRET=<razorpay_key_secret>
+
+STRIPE_KEY=<stripe_public_key>
+STRIPE_SECRET=<stripe_secret_key>
+
+ADMIN_EMAIL=admin@clientdomain.com
+ADMIN_PASSWORD=<strong-password>
+```
+
+> Replit: store secrets via *Tools → Secrets* and read with `vlucas/phpdotenv`.
+
+---
+
+## 5) Database Schema (SQLite)
+
+> Use `scripts/migrate.php` to create tables. Below is the schema outline.
+
+**users** (admin)
+
+* id (pk), name, email (unique), password_hash, role (admin), created_at, updated_at
+
+**services**
+
+* id, title, slug, short_desc, description, duration_minutes, price_inr, price_usd, is_active, sort_order
+
+**bookings**
+
+* id, service_id (fk), name, email, phone, timezone, preferred_date, preferred_time, meeting_mode (video/phone/in-person), amount, currency, payment_status (pending/paid/failed), rzp_order_id, stripe_session_id, notes, created_at
+
+**testimonials**
+
+* id, author_name, country, rating (1-5), content, avatar_url, is_approved, created_at
+
+**posts** (blog)
+
+* id, title, slug, excerpt, content, featured_image, status (draft/published), published_at, created_at, updated_at
+
+**media**
+
+* id, path, alt_text, type (image/video), created_at
+
+**settings**
+
+* id, key (unique), value (json/text)
+
+**leads** (contact form/newsletter)
+
+* id, name, email, phone, subject, message, type (contact/newsletter), created_at
+
+Indexes: slugs unique, FKs on `service_id`, indexes on `payment_status`, `published_at`.
+
+---
+
+## 6) Routing & Pages
+
+**Public Routes**
+
+* `/` Home
+* `/about`
+* `/services` → grid
+* `/service/{slug}` → detail + CTA
+* `/pricing` (optional) → INR/USD toggle
+* `/booking` → flow (select service → pick time → pay → confirm)
+* `/blog` → list + filters
+* `/blog/{slug}` → post
+* `/testimonials`
+* `/gallery`
+* `/contact`
+* `/success` `/failure` (payment callbacks)
+
+**Admin Routes** (protected)
+
+* `/admin/login`
+* `/admin/dashboard`
+* `/admin/services` (CRUD)
+* `/admin/bookings` (list, confirm, refund link)
+* `/admin/posts` (CRUD, publish)
+* `/admin/testimonials` (approve)
+* `/admin/media` (upload)
+* `/admin/settings` (site, SEO, payment toggles, i18n strings)
+
+---
+
+## 7) UI/UX Implementation
+
+**Design System**
+
+* Colors: Deep Blue (#0C134F), Gold (#FFD700), Off-white (#F8F8F8), Accent Saffron (#FF9933)
+* Typography: Playfair Display (headings), Poppins (body)
+* Components: Navbar, Hero, ServiceCard, TestimonialCard, PostCard, Modal, Toast, FormField
+
+**Frontend**
+
+* Tailwind build:
+
+  * `tailwind.config.js` content paths → `./app/Views/**/*.php`, `./public/**/*.js`
+  * Run `npx tailwindcss -i ./public/assets/css/input.css -o ./public/assets/css/app.css --watch`
+* Interactivity: Alpine.js for modals, accordions, filters
+* Accessibility: focus states, aria labels, color contrast, keyboard nav
+* Images: responsive `<img srcset>`; lazy loading
+
+---
+
+## 8) Booking & Timezones
+
+**Option A: Calendly**
+
+* Embed booking widget per service (`/service/{slug}`) with hidden fields for service id.
+* Webhook to `/webhooks/calendly` to capture confirmed events → mark as `paid` only after payment success.
+
+**Option B: Native Booking**
+
+* Service selection → timezone dropdown → date/time picker (compute slots with PHP, persist as `bookings` pending)
+* On payment success, set `payment_status=paid` and email confirmation with calendar `.ics` attachment.
+
+**ICS Generation**: create `.ics` content on the fly and email as attachment with PHPMailer.
+
+---
+
+## 9) Payments
+
+**Razorpay (INR)**
+
+* Create order via server (`amount` in paise) → pass `order_id` to Razorpay Checkout JS
+* Verify signature server-side (`order_id`, `payment_id`, `signature`) → if valid, mark booking paid
+
+**Stripe (USD/EUR)**
+
+* Create Checkout Session server-side → redirect URL
+* Webhook `/webhooks/stripe` to confirm payment → update booking
+
+**Security**
+
+* Verify webhooks with secret; store raw payload and signature; idempotency keys
+* Map payments to `booking.id`
+
+---
+
+## 10) Email & WhatsApp
+
+* **Email**: PHPMailer via SMTP for contact leads, booking confirmations, receipts
+* **Templates** in `app/Views/emails`
+* **WhatsApp Deep Link**: `https://wa.me/<number>?text=<urlencoded message>` on CTAs (sticky floating button)
+
+---
+
+## 11) SEO, Analytics & Internationalization
+
+* SEO fields per page: `meta_title`, `meta_description`, `og:*`, `twitter:*`
+* Sitemap.xml + robots.txt auto-generated from routes
+* Structured Data (JSON-LD): `Organization`, `Person`, `Service`, `Article`, `Review`
+* Canonicals and hreflang (EN/HI) if dual language
+* Analytics: Google Analytics 4 + Events for CTA clicks, purchase, form submit
+* Performance: Cache public pages with micro-cache (file cache for 60s) + HTTP caching
+
+---
+
+## 12) Security Hardening
+
+* CSRF tokens (paragonie/anti-csrf), same-site cookies, HttpOnly
+* Input validation (Respect/Validation), server-side sanitization
+* Output escaping in views
+* Rate limit (simple IP throttle on auth, contact)
+* File uploads: MIME/type check, random filenames, 5MB cap, store outside web root and proxy via controller
+* Disable directory listing; restrictive `.htaccess` in `uploads/`
+* Regular dependency updates; hide `APP_DEBUG` in prod
+
+---
+
+## 13) Caching & Performance
+
+* Static cache for rendered pages (`/storage/cache`) with invalidation on CRUD
+* CDN (optional): Replit → Cloudflare proxy (if custom domain)
+* Image optimization: build-time `sharp` (optional) or use TinyPNG API during upload
+
+---
+
+## 14) Admin CMS Highlights
+
+* Login (bcrypt/argon2id)
+* Dashboard with KPIs (bookings today, revenue, pending testimonials)
+* CRUD screens with server-side validation
+* WYSIWYG: use TinyMCE or TipTap-static for blog/content
+* Media manager (foldered, search, copy URL)
+* Settings → business hours, currencies enabled, WhatsApp number, GA4 id, SMTP creds
+
+---
+
+## 15) Example Snippets
+
+**Router (minimal)**
+
+```php
+// app/Core/Router.php (very simplified)
+class Router {
+  private array $routes = [];
+  public function get($path, $handler) { $this->routes['GET'][$path] = $handler; }
+  public function post($path, $handler) { $this->routes['POST'][$path] = $handler; }
+  public function dispatch() {
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?: '/';
+    $method = $_SERVER['REQUEST_METHOD'];
+    foreach (($this->routes[$method] ?? []) as $path => $handler) {
+      $pattern = '@^' . preg_replace('@\{([a-z_]+)\}@i', '(?P<$1>[a-z0-9-]+)', $path) . '$@i';
+      if (preg_match($pattern, $uri, $matches)) {
+        return call_user_func($handler, $matches);
+      }
+    }
+    http_response_code(404); echo view('errors/404');
+  }
+}
+```
+
+**DB (PDO + SQLite)**
+
+```php
+function db(): PDO {
+  static $pdo; if ($pdo) return $pdo;
+  $path = getenv('DB_PATH');
+  $pdo = new PDO('sqlite:' . $path, null, null, [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+  ]);
+  return $pdo;
+}
+```
+
+**CSRF (usage)**
+
+```php
+$csrf = new \ParagonIE\AntiCSRF\AntiCSRF();
+// in form
+$csrf->insertToken();
+// on POST
+if (!$csrf->validateRequest()) { http_response_code(403); exit('Invalid CSRF'); }
+```
+
+**Payment Verify (Razorpay)**
+
+```php
+$data = $_POST; // rzp_payment_id, rzp_order_id, rzp_signature
+$expected = hash_hmac('sha256', $data['rzp_order_id'].'|'.$data['rzp_payment_id'], getenv('RZP_KEY_SECRET'));
+if (!hash_equals($expected, $data['rzp_signature'])) die('Invalid signature');
+// mark booking paid
+```
+
+---
+
+## 16) Content Structure & Copy
+
+* Home: Hero (USP + CTA), Specializations, Booking CTA, Testimonials, Media logos, Blog highlights, Contact strip
+* Services: Grid (cards: icon, title, 2–3 line pitch, price), Detail page with FAQ
+* Booking: 3 steps (Service → Timezone/Slot → Payment)
+* Blog: categories (Tips, Transits, Monthly), share buttons, newsletter CTA
+* About: journey, lineage/gurus, certificates, awards
+* Testimonials: slider + country flags + rating
+* Contact: form + map + WhatsApp + email
+
+---
+
+## 17) i18n (EN/HI)
+
+* `resources/lang/en.php`, `resources/lang/hi.php` returning key/value arrays
+* `t('book_now')` helper fetches text by current locale; store locale in cookie + URL prefix `/hi/...`
+* Admin → strings editor for key updates
+
+## 19) Testing & QA Checklist
+
+* [ ] Validate forms (server + client)
+* [ ] Payment happy-path + failure-path + webhook retries
+* [ ] Booking slot collisions prevented
+* [ ] Email deliverability (SPF/DKIM for custom domain)
+* [ ] 404/500 pages themed
+* [ ] Lighthouse ≥ 90 (PWA optional)
+* [ ] a11y: tab order, focus ring, alt text, labels
+* [ ] Mobile: navbar, hero, booking flow
+* [ ] Admin: RBAC (future), logs, backups
+
+---
+
+## 20) Backup & Logs
+
+* Nightly DB backup copy to `/storage/backups/yyyy-mm-dd.sqlite`
+* Admin → Download backup button
+* Logs in `/storage/logs/app.log` rotated weekly
+
+---
+
+## 21) Timeline (Agile Sprints)
+
+* **Week 1:** Setup, schema, routing, layout, public pages
+* **Week 2:** Booking flow + payments + email
+* **Week 3:** Admin CMS + media + blog
+* **Week 4:** i18n, SEO, QA, content load, launch
+
+---
+
+## 22) Deliverables
+
+* Source code on Replit + GitHub mirror
+* Admin credentials (rotated post-handover)
+* Ops runbook (payments, refunds, backups)
+* Style guide + component library
+* Content import (10 services, 6 blog posts, 12 testimonials)
+
+---
+
+## 23) Sample `migrate.php` (DDL extract)
+
+```php
+<?php
+$pdo = new PDO('sqlite:' . getenv('DB_PATH'));
+$sql = [
+  'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, password_hash TEXT, role TEXT, created_at TEXT, updated_at TEXT)',
+  'CREATE TABLE IF NOT EXISTS services (id INTEGER PRIMARY KEY, title TEXT, slug TEXT UNIQUE, short_desc TEXT, description TEXT, duration_minutes INTEGER, price_inr INTEGER, price_usd INTEGER, is_active INTEGER, sort_order INTEGER)',
+  'CREATE TABLE IF NOT EXISTS bookings (id INTEGER PRIMARY KEY, service_id INTEGER, name TEXT, email TEXT, phone TEXT, timezone TEXT, preferred_date TEXT, preferred_time TEXT, meeting_mode TEXT, amount INTEGER, currency TEXT, payment_status TEXT, rzp_order_id TEXT, stripe_session_id TEXT, notes TEXT, created_at TEXT)',
+  'CREATE TABLE IF NOT EXISTS testimonials (id INTEGER PRIMARY KEY, author_name TEXT, country TEXT, rating INTEGER, content TEXT, avatar_url TEXT, is_approved INTEGER, created_at TEXT)',
+  'CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY, title TEXT, slug TEXT UNIQUE, excerpt TEXT, content TEXT, featured_image TEXT, status TEXT, published_at TEXT, created_at TEXT, updated_at TEXT)',
+  'CREATE TABLE IF NOT EXISTS media (id INTEGER PRIMARY KEY, path TEXT, alt_text TEXT, type TEXT, created_at TEXT)',
+  'CREATE TABLE IF NOT EXISTS settings (id INTEGER PRIMARY KEY, key TEXT UNIQUE, value TEXT)',
+  'CREATE TABLE IF NOT EXISTS leads (id INTEGER PRIMARY KEY, name TEXT, email TEXT, phone TEXT, subject TEXT, message TEXT, type TEXT, created_at TEXT)'
+];
+foreach ($sql as $s) { $pdo->exec($s); }
+echo "migrations done\n";
+```
+
+---
+
+## 24) Content & Asset Checklist
+
+* Logo (SVG + PNG), favicon, app icons
+* Profile photos (webp), award logos, certificates
+* 10–12 service icons (outline style)
+* Backgrounds: subtle mandala/cosmic
+* Copy in EN + HI; pricing (INR + USD)
+* WhatsApp number + email + GA4 id
+
+---
+
+## 25) Go-Live Runbook
+
+1. Freeze content → full backup
+2. Switch `APP_DEBUG=false` + rotate admin password
+3. Test payments live mode (₹1 test product)
+4. Update DNS to custom domain
+5. Submit sitemap to Google Search Console
+6. Monitor logs/GA4; fix 404s; first-week hypercare
+
+---
+
+## 26) Future Enhancements
+
+* AI Q&A bot for FAQs (retrieval on services/blog)
+* Appointment reminders (email + WhatsApp via Twilio/Interakt)
+* Multi-astrologer marketplace (RBAC + revenue split)
+* Subscriptions for monthly horoscopes (Stripe Billing)
+
+---
+
+**This document is ready to implement on Replit with PHP.**
+
+---
+
+## 27) Starter Code Skeleton (Download)
+
+A minimal, working scaffolding you can import directly into Replit. Includes:
+
+* Front controller (`public/index.php`), PSR-4 autoload, simple Router
+* Views with base layout (Home + Contact), 404 page
+* Config + routes, helpers, assets folders, `.htaccess`
+* SQLite DB + migration script
+
+**Download ZIP:** astrology-portfolio-php-starter.zip (attach via ChatGPT download link)
+
+**Quick Start**
+
+1. Create a new Repl → *PHP + Apache*.
+2. Upload and extract the ZIP into the Repl root (it will create `astrology-portfolio-php/`).
+3. Open Shell and run:
+
+   ```bash
+   cd astrology-portfolio-php
+   composer install
+   php scripts/migrate.php
+   cp .env.example .env
+   ```
+4. Set **Secrets** (optional) → update `.env`.
+5. Click **Run** → test `/` and `/contact`.
+
+Next: expand routes for `/services`, `/booking`, `/blog` using the patterns in this guide.
