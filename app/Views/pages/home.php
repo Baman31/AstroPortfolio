@@ -37,47 +37,99 @@
                 <div class="floating-star text-sm" style="top: 50%; left: 20%; animation-delay: 1.5s;">★</div>
                 
                 <div class="solar-system">
+                    <!-- Sacred Geometry Center -->
                     <div class="sacred-geometry">
+                        <!-- Outer Circle -->
                         <div class="geometry-circle"></div>
+                        <!-- Inner Circle -->
                         <div class="geometry-circle" style="width: 75%; height: 75%; border-width: 1px;"></div>
+                        
+                        <!-- Radiating Rays -->
                         <div class="geometry-rays">
                             <svg viewBox="0 0 100 100" class="w-full h-full">
-                                <line x1="50" y1="50" x2="50" y2="10" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1"/>
-                                <line x1="50" y1="50" x2="90" y2="50" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1"/>
-                                <line x1="50" y1="50" x2="50" y2="90" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1"/>
-                                <line x1="50" y1="50" x2="10" y2="50" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1"/>
-                                <line x1="50" y1="50" x2="78" y2="22" stroke="rgba(212, 175, 55, 0.3)" stroke-width="1"/>
-                                <line x1="50" y1="50" x2="78" y2="78" stroke="rgba(212, 175, 55, 0.3)" stroke-width="1"/>
-                                <line x1="50" y1="50" x2="22" y2="78" stroke="rgba(212, 175, 55, 0.3)" stroke-width="1"/>
-                                <line x1="50" y1="50" x2="22" y2="22" stroke="rgba(212, 175, 55, 0.3)" stroke-width="1"/>
+                                <!-- Main rays -->
+                                <line x1="50" y1="50" x2="50" y2="5" stroke="rgba(255, 255, 255, 0.3)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="95" y2="50" stroke="rgba(255, 255, 255, 0.3)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="50" y2="95" stroke="rgba(255, 255, 255, 0.3)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="5" y2="50" stroke="rgba(255, 255, 255, 0.3)" stroke-width="0.5"/>
+                                
+                                <!-- Diagonal rays -->
+                                <line x1="50" y1="50" x2="85" y2="15" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="85" y2="85" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="15" y2="85" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="15" y2="15" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.5"/>
+                                
+                                <!-- Additional rays for density -->
+                                <line x1="50" y1="50" x2="70" y2="8" stroke="rgba(255, 255, 255, 0.15)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="92" y2="30" stroke="rgba(255, 255, 255, 0.15)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="92" y2="70" stroke="rgba(255, 255, 255, 0.15)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="70" y2="92" stroke="rgba(255, 255, 255, 0.15)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="30" y2="92" stroke="rgba(255, 255, 255, 0.15)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="8" y2="70" stroke="rgba(255, 255, 255, 0.15)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="8" y2="30" stroke="rgba(255, 255, 255, 0.15)" stroke-width="0.5"/>
+                                <line x1="50" y1="50" x2="30" y2="8" stroke="rgba(255, 255, 255, 0.15)" stroke-width="0.5"/>
                             </svg>
                         </div>
-                        <div class="pyramid"></div>
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42%; height: 42%; border: 2px solid rgba(212, 175, 55, 0.6); clip-path: polygon(50% 0%, 100% 100%, 0% 100%);"></div>
+                        
+                        <!-- Hexagon/Star Pattern -->
+                        <div class="hexagon">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <!-- Hexagon -->
+                                <polygon points="50,15 82,32.5 82,67.5 50,85 18,67.5 18,32.5" 
+                                         fill="none" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1"/>
+                                
+                                <!-- Inner Star/Triangle -->
+                                <polygon points="50,25 70,60 30,60" 
+                                         fill="none" stroke="rgba(212, 175, 55, 0.5)" stroke-width="1.5"/>
+                                <polygon points="50,65 30,40 70,40" 
+                                         fill="none" stroke="rgba(212, 175, 55, 0.5)" stroke-width="1.5"/>
+                                
+                                <!-- Connecting lines -->
+                                <line x1="50" y1="25" x2="50" y2="65" stroke="rgba(212, 175, 55, 0.3)" stroke-width="1"/>
+                                <line x1="30" y1="40" x2="70" y2="40" stroke="rgba(212, 175, 55, 0.3)" stroke-width="1"/>
+                                <line x1="30" y1="60" x2="70" y2="60" stroke="rgba(212, 175, 55, 0.3)" stroke-width="1"/>
+                            </svg>
+                        </div>
+                        
+                        <!-- Center Glow -->
+                        <div class="center-glow"></div>
                     </div>
                     
+                    <!-- Orbit 1 (Inner) -->
                     <div class="orbit orbit-1">
-                        <div class="planet planet-1">
-                            <div class="moon-orbit" style="width: 50px; height: 50px;">
-                                <div class="moon" style="margin-left: 20px; margin-top: -6px;"></div>
-                            </div>
+                        <div class="orbit-wrapper">
+                            <div class="planet planet-small planet-gold" style="top: 0%; left: 50%; transform: translate(-50%, -50%);"></div>
                         </div>
                     </div>
                     
+                    <!-- Orbit 2 (Middle) -->
                     <div class="orbit orbit-2">
-                        <div class="planet planet-2"></div>
+                        <div class="orbit-wrapper">
+                            <div class="planet planet-medium" style="top: 20%; left: 80%; transform: translate(-50%, -50%);">
+                                <div class="planet-ring"></div>
+                            </div>
+                            <div class="planet planet-small" style="top: 80%; left: 20%; transform: translate(-50%, -50%);"></div>
+                        </div>
                     </div>
                     
+                    <!-- Orbit 3 (Outer) -->
                     <div class="orbit orbit-3">
-                        <div class="planet planet-3">
-                            <div class="moon-orbit reverse" style="width: 60px; height: 60px;">
-                                <div class="moon" style="margin-left: 24px; margin-top: -6px;"></div>
+                        <div class="orbit-wrapper">
+                            <div class="planet planet-large" style="top: 10%; left: 75%; transform: translate(-50%, -50%);"></div>
+                            <div class="planet planet-medium" style="top: 50%; left: 5%; transform: translate(-50%, -50%);"></div>
+                            <div class="planet planet-small" style="top: 85%; left: 45%; transform: translate(-50%, -50%);">
+                                <div class="moon-orbit" style="width: 40px; height: 40px;">
+                                    <div class="moon" style="margin-left: 16px; margin-top: -6px;"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div style="position: absolute; top: 15%; left: -10%; width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle, rgba(139,139,139,0.3), transparent); animation: pulse 4s ease-in-out infinite;"></div>
-                    <div style="position: absolute; bottom: 20%; right: -5%; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, rgba(212,175,55,0.2), transparent); animation: pulse 6s ease-in-out infinite;"></div>
+                    <!-- Floating Background Planets -->
+                    <div class="planet planet-large" style="position: absolute; top: 8%; left: 5%; opacity: 0.6;"></div>
+                    <div class="planet planet-medium" style="position: absolute; top: 15%; right: 8%; opacity: 0.5;"></div>
+                    <div class="planet planet-small" style="position: absolute; bottom: 12%; left: 15%; opacity: 0.4;"></div>
+                    <div class="planet planet-medium" style="position: absolute; bottom: 18%; right: 12%; opacity: 0.5;"></div>
                 </div>
             </div>
             

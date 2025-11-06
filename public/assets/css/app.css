@@ -1098,10 +1098,6 @@ h1, h2, h3, h4, h5, h6{
   border-radius: 0.5rem;
 }
 
-.border{
-  border-width: 1px;
-}
-
 .border-2{
   border-width: 2px;
 }
@@ -1573,10 +1569,6 @@ h1, h2, h3, h4, h5, h6{
   transition-duration: 300ms;
 }
 
-.ease-in-out{
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .text-gold-gradient{
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
   --tw-gradient-from: #B8941E var(--tw-gradient-from-position);
@@ -1654,27 +1646,45 @@ h1, h2, h3, h4, h5, h6{
   position: absolute;
   top: 50%;
   left: 50%;
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  border-radius: 50%;
   transform: translate(-50%, -50%);
 }
 
+.orbit-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 50%;
+}
+
 .orbit-1 {
-  width: 36%;
-  height: 36%;
-  animation: rotate 20s linear infinite;
+  width: 50%;
+  height: 45%;
+  transform: translate(-50%, -50%) rotate(30deg);
+}
+
+.orbit-1 .orbit-wrapper {
+  animation: rotate 25s linear infinite;
 }
 
 .orbit-2 {
-  width: 56%;
-  height: 56%;
-  animation: rotate 30s linear infinite reverse;
+  width: 70%;
+  height: 62%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+}
+
+.orbit-2 .orbit-wrapper {
+  animation: rotate 35s linear infinite reverse;
 }
 
 .orbit-3 {
-  width: 76%;
-  height: 76%;
-  animation: rotate 40s linear infinite;
+  width: 90%;
+  height: 78%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.orbit-3 .orbit-wrapper {
+  animation: rotate 45s linear infinite;
 }
 
 .planet {
@@ -1683,44 +1693,55 @@ h1, h2, h3, h4, h5, h6{
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-.planet-1 {
-  width: 6%;
-  height: 6%;
-  min-width: 20px;
-  min-height: 20px;
-  max-width: 30px;
-  max-height: 30px;
-  background: linear-gradient(135deg, #8b8b8b, #4a4a4a);
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.planet-small {
+  width: 5%;
+  height: 5%;
+  min-width: 16px;
+  min-height: 16px;
+  max-width: 24px;
+  max-height: 24px;
+  background: linear-gradient(135deg, #505050, #2a2a2a);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.planet-2 {
-  width: 8%;
-  height: 8%;
-  min-width: 28px;
-  min-height: 28px;
-  max-width: 40px;
-  max-height: 40px;
-  background: linear-gradient(135deg, #f5d76e, #d4af37);
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-}
-
-.planet-3 {
+.planet-medium {
   width: 7%;
   height: 7%;
   min-width: 24px;
   min-height: 24px;
   max-width: 35px;
   max-height: 35px;
-  background: linear-gradient(135deg, #c0c0c0, #707070);
-  top: 0;
+  background: linear-gradient(135deg, #a8a8a8, #606060);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.planet-large {
+  width: 9%;
+  height: 9%;
+  min-width: 32px;
+  min-height: 32px;
+  max-width: 45px;
+  max-height: 45px;
+  background: linear-gradient(135deg, #d0d0d0, #808080);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.planet-gold {
+  background: linear-gradient(135deg, #f5d76e, #d4af37);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+}
+
+.planet-ring {
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
+  width: 200%;
+  height: 60%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .moon {
@@ -1752,8 +1773,21 @@ h1, h2, h3, h4, h5, h6{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 24%;
-  height: 24%;
+  width: 28%;
+  height: 28%;
+}
+
+.center-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #f5d76e, #d4af37);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 40px rgba(212, 175, 55, 0.4);
+  animation: pulse 3s ease-in-out infinite;
 }
 
 .geometry-circle {
@@ -1772,9 +1806,27 @@ h1, h2, h3, h4, h5, h6{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 83%;
-  height: 83%;
+  width: 100%;
+  height: 100%;
   animation: rotate 60s linear infinite;
+}
+
+.hexagon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+}
+
+.star-shape {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
 }
 
 .floating-star {
