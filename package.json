@@ -1,0 +1,17 @@
+{
+  "name": "astrology-portfolio",
+  "version": "1.0.0",
+  "description": "Professional Astrology Portfolio Website",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./public/assets/css/input.css -o ./public/assets/css/app.css",
+    "watch:css": "npx tailwindcss -i ./public/assets/css/input.css -o ./public/assets/css/app.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.32",
+    "autoprefixer": "^10.4.16"
+  },
+  "dependencies": {
+    "alpinejs": "^3.13.3"
+  }
+}
