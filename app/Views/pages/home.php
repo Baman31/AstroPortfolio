@@ -113,10 +113,10 @@
                                 <line x1="30" y1="60" x2="70" y2="60" stroke="rgba(212, 175, 55, 0.3)" stroke-width="1"/>
                             </svg>
                         </div>
-                        
-                        <!-- Center Glow -->
-                        <div class="center-glow"></div>
                     </div>
+                    
+                    <!-- Center Glow (positioned relative to solar-system for perfect centering) -->
+                    <div class="center-glow"></div>
                     
                     <!-- Orbit 1 (Inner) -->
                     <div class="orbit orbit-1">
