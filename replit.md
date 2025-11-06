@@ -19,9 +19,10 @@ A production-grade professional astrology portfolio website built with PHP 8.4, 
 ### Frontend
 - **TailwindCSS 3.4**: Utility-first CSS framework
 - **Alpine.js 3.x**: Lightweight JavaScript framework
-- **Custom Design System**:
-  - Colors: Deep Blue (#0C134F), Gold (#FFD700), Saffron (#FF9933)
-  - Typography: Playfair Display (headings), Poppins (body)
+- **Custom Design System (Augury Theme)**:
+  - Colors: Cosmic Black (#0a0a0a), Gold (#D4AF37), Off-White (#f8f8f8)
+  - Typography: Cinzel (headings), Cormorant Garamond (decorative), Poppins (body)
+  - Animated Solar System: Elliptical orbits with sacred geometry center
 
 ## Project Structure
 
@@ -50,10 +51,37 @@ A production-grade professional astrology portfolio website built with PHP 8.4, 
     └── lang/              # Translations (EN/HI)
 ```
 
+## Recent Changes (November 2025)
+
+### Augury Theme Redesign
+- Completely redesigned website with dark mystical "Augury" theme
+- Dark cosmic background (#0a0a0a) with gold accents (#D4AF37)
+- New typography: Cinzel, Cormorant Garamond, Poppins
+- Brand name changed from generic to "Augury" for mystical aesthetic
+
+### Animated Solar System Section
+- **Sacred Geometry Center**:
+  - Hexagon with inner star/triangle patterns
+  - Radiating rays with multiple density levels (16+ rays)
+  - Pulsing gold center dot with glow effect
+  - Concentric circles
+- **Elliptical Orbits**:
+  - 3 crossing orbital paths with preserved tilts (30°, -15°, 45°)
+  - Nested orbit/wrapper architecture to maintain rotation while preserving tilt
+  - Responsive sizing (50%/45%, 70%/62%, 90%/78%) across all breakpoints
+- **Planets**:
+  - 7 planets with varied sizes (small, medium, large)
+  - Realistic gradient styling (gray/silver tones)
+  - 1 gold accent planet
+  - 1 planet with rings (Saturn-style)
+  - 1 planet with orbiting moon
+  - 4 floating background planets for depth
+- **Performance**: CSS keyframe animations, 60fps smooth motion, fully responsive (320px to desktop)
+
 ## Features Implemented
 
 ### Public Website
-- ✅ Home page with hero, services showcase, testimonials, blog highlights
+- ✅ Home page with hero, animated solar system, services showcase, testimonials, blog highlights
 - ✅ Services listing and detail pages with pricing
 - ✅ Pricing page with INR/USD currency toggle
 - ✅ About page with astrologer information
