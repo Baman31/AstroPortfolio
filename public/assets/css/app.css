@@ -759,8 +759,32 @@ h1, h2, h3, h4, h5, h6{
   position: sticky;
 }
 
+.-inset-4{
+  inset: -1rem;
+}
+
 .inset-0{
   inset: 0px;
+}
+
+.inset-4{
+  inset: 1rem;
+}
+
+.-bottom-4{
+  bottom: -1rem;
+}
+
+.-left-4{
+  left: -1rem;
+}
+
+.-right-4{
+  right: -1rem;
+}
+
+.-top-4{
+  top: -1rem;
 }
 
 .bottom-0{
@@ -892,8 +916,16 @@ h1, h2, h3, h4, h5, h6{
   display: none;
 }
 
+.aspect-square{
+  aspect-ratio: 1 / 1;
+}
+
 .h-16{
   height: 4rem;
+}
+
+.h-24{
+  height: 6rem;
 }
 
 .h-32{
@@ -938,6 +970,10 @@ h1, h2, h3, h4, h5, h6{
 
 .w-16{
   width: 4rem;
+}
+
+.w-24{
+  width: 6rem;
 }
 
 .w-4{
@@ -1098,6 +1134,10 @@ h1, h2, h3, h4, h5, h6{
   border-radius: 0.5rem;
 }
 
+.border{
+  border-width: 1px;
+}
+
 .border-2{
   border-width: 2px;
 }
@@ -1106,12 +1146,28 @@ h1, h2, h3, h4, h5, h6{
   border-bottom-width: 1px;
 }
 
+.border-b-2{
+  border-bottom-width: 2px;
+}
+
+.border-l-2{
+  border-left-width: 2px;
+}
+
 .border-l-4{
   border-left-width: 4px;
 }
 
+.border-r-2{
+  border-right-width: 2px;
+}
+
 .border-t{
   border-top-width: 1px;
+}
+
+.border-t-2{
+  border-top-width: 2px;
 }
 
 .border-gold{
@@ -1121,6 +1177,10 @@ h1, h2, h3, h4, h5, h6{
 
 .border-gold\/20{
   border-color: rgb(212 175 55 / 0.2);
+}
+
+.border-gold\/30{
+  border-color: rgb(212 175 55 / 0.3);
 }
 
 .border-green-500{
@@ -1150,6 +1210,14 @@ h1, h2, h3, h4, h5, h6{
 .bg-cosmic-dark{
   --tw-bg-opacity: 1;
   background-color: rgb(15 15 15 / var(--tw-bg-opacity, 1));
+}
+
+.bg-cosmic-gray\/30{
+  background-color: rgb(26 26 26 / 0.3);
+}
+
+.bg-gold\/20{
+  background-color: rgb(212 175 55 / 0.2);
 }
 
 .bg-gray-100{
@@ -1782,12 +1850,13 @@ h1, h2, h3, h4, h5, h6{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 8px;
-  height: 8px;
+  width: 16px;
+  height: 16px;
   background: radial-gradient(circle, #f5d76e, #d4af37);
   border-radius: 50%;
   box-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 40px rgba(212, 175, 55, 0.4);
   animation: pulse 3s ease-in-out infinite;
+  z-index: 10;
 }
 
 .geometry-circle {
@@ -1914,19 +1983,19 @@ h1, h2, h3, h4, h5, h6{
     padding-bottom: 8rem;
   }
 
-  .md\:text-2xl{
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
   .md\:text-5xl{
     font-size: 3rem;
     line-height: 1;
   }
 
-  .md\:text-7xl{
-    font-size: 4.5rem;
+  .md\:text-6xl{
+    font-size: 3.75rem;
     line-height: 1;
+  }
+
+  .md\:text-xl{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -1939,7 +2008,16 @@ h1, h2, h3, h4, h5, h6{
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .lg\:justify-end{
+    justify-content: flex-end;
+  }
+
   .lg\:pl-8{
     padding-left: 2rem;
+  }
+
+  .lg\:text-7xl{
+    font-size: 4.5rem;
+    line-height: 1;
   }
 }

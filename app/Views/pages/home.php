@@ -4,19 +4,42 @@
     <div class="absolute inset-0 bg-cosmic opacity-50"></div>
     <div class="absolute inset-0" style="background-image: radial-gradient(2px 2px at 20% 30%, white, transparent), radial-gradient(2px 2px at 60% 70%, white, transparent), radial-gradient(1px 1px at 50% 50%, white, transparent); background-size: 200px 200px; opacity: 0.3;"></div>
     
-    <div class="container mx-auto px-4 text-center relative z-10">
-        <div class="max-w-4xl mx-auto">
-            <p class="text-gold text-sm tracking-widest uppercase mb-4 font-decorative">Unlock the Mysteries</p>
-            <h1 class="text-5xl md:text-7xl font-heading font-bold mb-6 text-off-white leading-tight">
-                Your path is illuminated by a<br>
-                <span class="text-gold-gradient">road-map of stars.</span>
-            </h1>
-            <p class="text-xl md:text-2xl mb-10 text-gray-300 max-w-2xl mx-auto font-light">
-                Expert Vedic Astrology Consultations for Life, Career, Relationships & Spiritual Growth
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/booking" class="btn-primary inline-block">Book Consultation</a>
-                <a href="/services" class="btn-secondary inline-block">Explore Services</a>
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="text-left">
+                <p class="text-gold text-sm tracking-widest uppercase mb-4 font-decorative">Unlock the Mysteries</p>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 text-off-white leading-tight">
+                    Your path is illuminated by a
+                    <span class="text-gold-gradient">road-map of stars.</span>
+                </h1>
+                <p class="text-lg md:text-xl mb-10 text-gray-300 font-light">
+                    Expert Vedic Astrology Consultations for Life, Career, Relationships & Spiritual Growth
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="/booking" class="btn-primary inline-block">Book Consultation</a>
+                    <a href="/services" class="btn-secondary inline-block">Explore Services</a>
+                </div>
+            </div>
+            
+            <div class="relative flex justify-center lg:justify-end">
+                <div class="relative w-full max-w-md aspect-square">
+                    <div class="absolute inset-0 border-2 border-gold/30 rounded-lg"></div>
+                    <div class="absolute -inset-4 border border-gold/20 rounded-lg"></div>
+                    <div class="absolute inset-4 flex items-center justify-center bg-cosmic-gray/30 backdrop-blur-sm rounded-lg overflow-hidden">
+                        <div class="text-center p-8">
+                            <div class="w-24 h-24 mx-auto mb-4 bg-gold/20 rounded-full flex items-center justify-center text-4xl">
+                                🌟
+                            </div>
+                            <p class="text-gray-400 text-sm">Astrologer Photo</p>
+                            <p class="text-gray-500 text-xs mt-2">Add your image here</p>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-gold"></div>
+                    <div class="absolute -top-4 -right-4 w-8 h-8 border-t-2 border-r-2 border-gold"></div>
+                    <div class="absolute -bottom-4 -left-4 w-8 h-8 border-b-2 border-l-2 border-gold"></div>
+                    <div class="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-gold"></div>
+                </div>
             </div>
         </div>
     </div>
