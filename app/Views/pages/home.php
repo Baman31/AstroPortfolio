@@ -24,6 +24,78 @@
     <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-cosmic-black to-transparent"></div>
 </section>
 
+<section class="py-24 bg-cosmic-dark relative overflow-hidden">
+    <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(2px 2px at 25% 25%, white, transparent), radial-gradient(2px 2px at 75% 75%, white, transparent); background-size: 150px 150px;"></div>
+    
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <div class="floating-star text-2xl" style="top: 10%; left: 10%; animation-delay: 0s;">✦</div>
+                <div class="floating-star text-xl" style="top: 20%; right: 15%; animation-delay: 1s;">✧</div>
+                <div class="floating-star text-lg" style="bottom: 30%; left: 5%; animation-delay: 2s;">✦</div>
+                <div class="floating-star text-xl" style="bottom: 15%; right: 10%; animation-delay: 0.5s;">✧</div>
+                <div class="floating-star text-sm" style="top: 50%; left: 20%; animation-delay: 1.5s;">★</div>
+                
+                <div class="solar-system">
+                    <div class="sacred-geometry">
+                        <div class="geometry-circle"></div>
+                        <div class="geometry-circle" style="width: 75%; height: 75%; border-width: 1px;"></div>
+                        <div class="geometry-rays">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <line x1="50" y1="50" x2="50" y2="10" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1"/>
+                                <line x1="50" y1="50" x2="90" y2="50" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1"/>
+                                <line x1="50" y1="50" x2="50" y2="90" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1"/>
+                                <line x1="50" y1="50" x2="10" y2="50" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1"/>
+                                <line x1="50" y1="50" x2="78" y2="22" stroke="rgba(212, 175, 55, 0.3)" stroke-width="1"/>
+                                <line x1="50" y1="50" x2="78" y2="78" stroke="rgba(212, 175, 55, 0.3)" stroke-width="1"/>
+                                <line x1="50" y1="50" x2="22" y2="78" stroke="rgba(212, 175, 55, 0.3)" stroke-width="1"/>
+                                <line x1="50" y1="50" x2="22" y2="22" stroke="rgba(212, 175, 55, 0.3)" stroke-width="1"/>
+                            </svg>
+                        </div>
+                        <div class="pyramid"></div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42%; height: 42%; border: 2px solid rgba(212, 175, 55, 0.6); clip-path: polygon(50% 0%, 100% 100%, 0% 100%);"></div>
+                    </div>
+                    
+                    <div class="orbit orbit-1">
+                        <div class="planet planet-1">
+                            <div class="moon-orbit" style="width: 50px; height: 50px;">
+                                <div class="moon" style="margin-left: 20px; margin-top: -6px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="orbit orbit-2">
+                        <div class="planet planet-2"></div>
+                    </div>
+                    
+                    <div class="orbit orbit-3">
+                        <div class="planet planet-3">
+                            <div class="moon-orbit reverse" style="width: 60px; height: 60px;">
+                                <div class="moon" style="margin-left: 24px; margin-top: -6px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="position: absolute; top: 15%; left: -10%; width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle, rgba(139,139,139,0.3), transparent); animation: pulse 4s ease-in-out infinite;"></div>
+                    <div style="position: absolute; bottom: 20%; right: -5%; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, rgba(212,175,55,0.2), transparent); animation: pulse 6s ease-in-out infinite;"></div>
+                </div>
+            </div>
+            
+            <div class="text-left lg:pl-8">
+                <p class="text-gold text-sm tracking-widest uppercase mb-4">Lorem Ipsum</p>
+                <h2 class="text-4xl md:text-5xl font-heading font-bold mb-6 text-off-white">What we do</h2>
+                <p class="text-gray-400 leading-relaxed mb-6">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+                </p>
+                <p class="text-gray-400 leading-relaxed mb-8">
+                    Through the ancient wisdom of Vedic astrology, we decode the cosmic blueprint of your life, revealing hidden patterns and celestial influences that shape your destiny.
+                </p>
+                <a href="/services" class="btn-secondary inline-block">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="py-20 bg-cosmic-black">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
