@@ -260,6 +260,31 @@
                 <?php 
                 $count++;
                 endforeach; ?>
+                
+                <?php 
+                $count = 0;
+                foreach ($services as $service): 
+                    if ($count >= 3) break;
+                ?>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <div style="font-size: 4rem;">
+                            <?= $serviceIcons[$count] ?? '✨' ?>
+                        </div>
+                    </div>
+                    <h3 class="service-title">
+                        <?= e($service['title']) ?>
+                    </h3>
+                    <p class="service-description">
+                        Contrary to popular belief, Lorem Ipsum is not simply random text
+                    </p>
+                    <a href="/service/<?= e($service['slug']) ?>" class="view-more-btn">
+                        View More
+                    </a>
+                </div>
+                <?php 
+                $count++;
+                endforeach; ?>
             </div>
         </div>
         
