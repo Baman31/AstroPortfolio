@@ -35,11 +35,31 @@ class HomeController extends Controller
             'message' => 'required|min:10'
         ]);
         
-        $stmt = db()->prepare("INSERT INTO leads (name, email, phone, subject, message, type, created_at) VALUES (?, ?, ?, ?, ?, 'contact', datetime('now'))");
-        $stmt->execute([$data['name'], $data['email'], $data['phone'], $data['subject'], $data['message']]);
+        try {
+            $stmt = db()->prepare("INSERT INTO leads (name, email, phone, subject, message, type, created_at) VALUES (?, ?, ?, ?, ?, 'contact', datetime('now'))");
+            $result = $stmt->execute([$data['name'], $data['email'], $data['phone'], $data['subject'], $data['message']]);
+            
+            if (!$result) {
+                error_log('Failed to insert lead: ' . print_r($stmt->errorInfo(), true));
+                flash('error', 'Failed to send message. Please try again.');
+                redirect('/contact');
+                return '';
+            }
+            
+            foreach (array_keys($data) as $key) {
+                if (isset($_SESSION['flash_old_' . $key])) {
+                    unset($_SESSION['flash_old_' . $key]);
+                }
+            }
+            
+            flash('success', 'Thank you for contacting us! We will get back to you soon.');
+            redirect('/contact');
+        } catch (\Exception $e) {
+            error_log('Contact form error: ' . $e->getMessage());
+            flash('error', 'An error occurred: ' . $e->getMessage());
+            redirect('/contact');
+        }
         
-        flash('success', 'Thank you for contacting us! We will get back to you soon.');
-        redirect('/contact');
         return '';
     }
 }

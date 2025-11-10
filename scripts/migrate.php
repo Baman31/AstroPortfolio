@@ -24,8 +24,11 @@ $tables = [
         duration_minutes INTEGER DEFAULT 60,
         price_inr INTEGER DEFAULT 0,
         price_usd INTEGER DEFAULT 0,
+        icon TEXT DEFAULT "✨",
         is_active INTEGER DEFAULT 1,
-        sort_order INTEGER DEFAULT 0
+        sort_order INTEGER DEFAULT 0,
+        created_at TEXT,
+        updated_at TEXT
     )',
     
     'CREATE TABLE IF NOT EXISTS bookings (

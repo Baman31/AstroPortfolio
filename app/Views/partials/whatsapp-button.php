@@ -1,6 +1,6 @@
 <?php
-$whatsappNumber = env('WHATSAPP_NUMBER', '919876543210');
-$message = urlencode("Hi! I'm interested in astrology consultation services.");
+$whatsappNumber = '917891730033';
+$message = urlencode("Namaste Pandit Ji! I'm interested in Vedic astrology consultation services.");
 ?>
 <a href="https://wa.me/<?= $whatsappNumber ?>?text=<?= $message ?>" 
    target="_blank"

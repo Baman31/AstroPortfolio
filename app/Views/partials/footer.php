@@ -4,9 +4,10 @@
             <div>
                 <div class="flex items-center space-x-2 mb-4">
                     <span class="text-3xl">✨</span>
-                    <h3 class="text-2xl font-heading font-bold text-gold tracking-wider">Augury</h3>
+                    <h3 class="text-2xl font-heading font-bold text-gold tracking-wider">AstroDevki</h3>
                 </div>
-                <p class="text-gray-400 text-sm leading-relaxed">Professional Vedic astrology consultations for guidance in life, career, relationships, and spiritual growth.</p>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">Guiding Lives Through Planetary Wisdom & Divine Remedies</p>
+                <p class="text-gray-500 text-xs italic">"Illuminate your destiny - let the stars guide your path."</p>
             </div>
             
             <div>
@@ -20,11 +21,11 @@
             </div>
             
             <div>
-                <h4 class="font-heading font-semibold mb-6 text-gold text-lg">Services</h4>
+                <h4 class="font-heading font-semibold mb-6 text-gold text-lg">Expertise</h4>
                 <ul class="space-y-3 text-sm">
-                    <li><a href="/services" class="text-gray-400 hover:text-gold transition-colors">Birth Chart Analysis</a></li>
-                    <li><a href="/services" class="text-gray-400 hover:text-gold transition-colors">Career Guidance</a></li>
-                    <li><a href="/services" class="text-gray-400 hover:text-gold transition-colors">Relationship Compatibility</a></li>
+                    <li><a href="/services" class="text-gray-400 hover:text-gold transition-colors">Vedic Astrology</a></li>
+                    <li><a href="/services" class="text-gray-400 hover:text-gold transition-colors">Kundali Milan</a></li>
+                    <li><a href="/services" class="text-gray-400 hover:text-gold transition-colors">Career & Finance</a></li>
                     <li><a href="/booking" class="text-gray-400 hover:text-gold transition-colors">Book Consultation</a></li>
                 </ul>
             </div>
@@ -34,18 +35,23 @@
                 <ul class="space-y-3 text-sm">
                     <li class="text-gray-400">
                         <span class="text-gold">Email:</span><br>
-                        <?= e(env('MAIL_FROM', 'hello@astrology.com')) ?>
+                        dnsnokiaip192@gmail.com
                     </li>
                     <li class="text-gray-400">
                         <span class="text-gold">WhatsApp:</span><br>
-                        +<?= e(env('WHATSAPP_NUMBER', '919876543210')) ?>
+                        +91-7891730033<br>
+                        +91-7298330003
+                    </li>
+                    <li class="text-gray-400">
+                        <span class="text-gold">Location:</span><br>
+                        Rajasthan, India
                     </li>
                 </ul>
             </div>
         </div>
         
         <div class="border-t border-gold/20 pt-8 text-center">
-            <p class="text-gray-500 text-sm">&copy; <?= date('Y') ?> Augury Astrology. All rights reserved. Designed with cosmic precision.</p>
+            <p class="text-gray-500 text-sm">&copy; <?= date('Y') ?> AstroDevki - Pandit Devki Nandan Sharma. All rights reserved.</p>
         </div>
     </div>
 </footer>
