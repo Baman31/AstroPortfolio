@@ -39,7 +39,7 @@
                     </li>
                     <li class="text-gray-400">
                         <span class="text-gold">WhatsApp:</span><br>
-                        +91-7891730033<br>
+                        +91-7891730003<br>
                         +91-7298330003
                     </li>
                     <li class="text-gray-400">
@@ -51,7 +51,7 @@
         </div>
         
         <div class="border-t border-gold/20 pt-8 text-center">
-            <p class="text-gray-500 text-sm">&copy; <?= date('Y') ?> AstroDevki - Pandit Devki Nandan Sharma. All rights reserved.</p>
+            <p class="text-gray-500 text-sm">&copy; <?= date('Y') ?> AstroDevki. All rights reserved. Designed & Developed by NeoVedic Software.</p>
         </div>
     </div>
 </footer>

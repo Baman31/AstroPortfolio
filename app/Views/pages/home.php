@@ -281,7 +281,7 @@
                         <div class="moon-background"></div>
                         <div class="orbital-rings"></div>
                         <div class="counter-value">
-                            <span class="counter-number" data-target="45">0</span>
+                            <span class="counter-number" data-target="10">0</span>
                         </div>
                     </div>
                     <p class="counter-label">Years of<br/>Experience</p>
@@ -303,7 +303,7 @@
                         <div class="moon-background"></div>
                         <div class="orbital-rings"></div>
                         <div class="counter-value">
-                            <span class="counter-number" data-target="99">0</span><span class="counter-plus">+</span>
+                            <span class="counter-number" data-target="10">0</span><span class="counter-plus">+</span>
                         </div>
                     </div>
                     <p class="counter-label">Qualified<br/>Astrologers</p>
