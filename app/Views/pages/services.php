@@ -23,5 +23,5 @@ require __DIR__ . '/../partials/page-hero.php';
 </section>
 <?php
 $content = ob_get_clean();
-$title = 'Our Services - Acharya Astrology';
+$title = 'Our Services - AstroDevki';
 require __DIR__ . '/../layouts/app.php';

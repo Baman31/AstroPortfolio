@@ -331,9 +331,9 @@
     
     <div class="container mx-auto px-4 sm:px-6 relative z-10">
         <div class="text-center mb-12 sm:mb-16 animate-fade-in-up">
-            <p class="text-gold text-xs sm:text-sm tracking-widest uppercase mb-3 sm:mb-4">Lorem Ipsum</p>
+            <p class="text-gold text-xs sm:text-sm tracking-widest uppercase mb-3 sm:mb-4">स्वागतम्‌</p>
             <h2 class="section-title">What My Client Says</h2>
-            <p class="text-sm sm:text-base text-gray-400 mt-4 max-w-2xl mx-auto px-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+            <p class="text-sm sm:text-base text-gray-400 mt-4 max-w-2xl mx-auto px-4">Discover what our clients have experienced through their journey with Vedic astrology and spiritual guidance.</p>
         </div>
         <div class="testimonials-container">
             <div class="testimonials-grid">

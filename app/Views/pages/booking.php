@@ -98,5 +98,5 @@ require __DIR__ . '/../partials/page-hero.php';
 </section>
 <?php
 $content = ob_get_clean();
-$title = 'Book a Consultation - Acharya Astrology';
+$title = 'Book a Consultation - AstroDevki';
 require __DIR__ . '/../layouts/app.php';

@@ -18,5 +18,5 @@
 </section>
 <?php
 $content = ob_get_clean();
-$title = e($post['title']) . ' - Acharya Astrology';
+$title = e($post['title']) . ' - AstroDevki';
 require __DIR__ . '/../layouts/app.php';

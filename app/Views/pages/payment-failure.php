@@ -26,5 +26,5 @@
 </section>
 <?php
 $content = ob_get_clean();
-$title = 'Payment Failed - Acharya Astrology';
+$title = 'Payment Failed - AstroDevki';
 require __DIR__ . '/../layouts/app.php';

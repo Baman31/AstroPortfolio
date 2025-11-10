@@ -28,5 +28,5 @@
 </section>
 <?php
 $content = ob_get_clean();
-$title = e($service['title']) . ' - Acharya Astrology';
+$title = e($service['title']) . ' - AstroDevki';
 require __DIR__ . '/../layouts/app.php';
