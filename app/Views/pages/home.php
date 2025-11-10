@@ -260,91 +260,11 @@
                 <?php 
                 $count++;
                 endforeach; ?>
-                
-                <?php 
-                $count = 0;
-                foreach ($services as $service): 
-                    if ($count >= 3) break;
-                ?>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <div style="font-size: 4rem;">
-                            <?= $serviceIcons[$count] ?? '✨' ?>
-                        </div>
-                    </div>
-                    <h3 class="service-title">
-                        <?= e($service['title']) ?>
-                    </h3>
-                    <p class="service-description">
-                        Contrary to popular belief, Lorem Ipsum is not simply random text
-                    </p>
-                    <a href="/service/<?= e($service['slug']) ?>" class="view-more-btn">
-                        View More
-                    </a>
-                </div>
-                <?php 
-                $count++;
-                endforeach; ?>
             </div>
         </div>
         
         <div class="counters-container mt-56 mb-12 pt-16">
             <div class="counters-grid">
-                <div class="counter-item">
-                    <div class="counter-circle">
-                        <div class="moon-background"></div>
-                        <div class="orbital-rings"></div>
-                        <div class="counter-value">
-                            <span class="counter-number" data-target="99">0</span><span class="counter-plus">+</span>
-                        </div>
-                    </div>
-                    <p class="counter-label">Trusted by<br/>Million Clients</p>
-                </div>
-                
-                <div class="counter-item">
-                    <div class="counter-circle">
-                        <div class="moon-background"></div>
-                        <div class="orbital-rings"></div>
-                        <div class="counter-value">
-                            <span class="counter-number" data-target="45">0</span>
-                        </div>
-                    </div>
-                    <p class="counter-label">Years of<br/>Experience</p>
-                </div>
-                
-                <div class="counter-item">
-                    <div class="counter-circle">
-                        <div class="moon-background"></div>
-                        <div class="orbital-rings"></div>
-                        <div class="counter-value">
-                            <span class="counter-number" data-target="50">0</span>
-                        </div>
-                    </div>
-                    <p class="counter-label">Types of<br/>Horoscopes</p>
-                </div>
-                
-                <div class="counter-item">
-                    <div class="counter-circle">
-                        <div class="moon-background"></div>
-                        <div class="orbital-rings"></div>
-                        <div class="counter-value">
-                            <span class="counter-number" data-target="99">0</span><span class="counter-plus">+</span>
-                        </div>
-                    </div>
-                    <p class="counter-label">Qualified<br/>Astrologers</p>
-                </div>
-                
-                <div class="counter-item">
-                    <div class="counter-circle">
-                        <div class="moon-background"></div>
-                        <div class="orbital-rings"></div>
-                        <div class="counter-value">
-                            <span class="counter-number" data-target="86">0</span>
-                        </div>
-                    </div>
-                    <p class="counter-label">Success<br/>Horoscope</p>
-                </div>
-                
                 <div class="counter-item">
                     <div class="counter-circle">
                         <div class="moon-background"></div>
@@ -417,21 +337,6 @@
         </div>
         <div class="testimonials-container">
             <div class="testimonials-grid">
-                <?php foreach ($testimonials as $testimonial): ?>
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">
-                        <div class="sun-rays"></div>
-                        <div class="avatar-image">
-                            👤
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-6 italic leading-relaxed text-sm px-4">"<?= e($testimonial['content']) ?>"</p>
-                    <div class="text-gold font-heading font-semibold text-lg">
-                        <?= e($testimonial['author_name']) ?>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-                
                 <?php foreach ($testimonials as $testimonial): ?>
                 <div class="testimonial-card">
                     <div class="testimonial-avatar">
