@@ -220,7 +220,7 @@
     
     <img src="<?= asset('images/chakra.svg') ?>" alt="Chakra Background" class="rotating-chakra" />
     
-    <div class="absolute inset-0 opacity-5 z-0" style="background-image: radial-gradient(2px 2px at 20% 30%, white, transparent), radial-gradient(2px 2px at 60% 70%, white, transparent), radial-gradient(1px 1px at 50% 50%, white, transparent); background-size: 200px 200px;"></div>
+    <div class="absolute inset-0 opacity-5 z-0" style="background-image: radial-gradient(2px 2px at 20% 30%, white, transparent), radial-gradient(2px 2px at 60% 70%, white, transparent), radial-gradient(1px 1px at 50% 50%, white, transparent); background-size: 200px 200px; pointer-events: none;"></div>
     
     <div class="container mx-auto px-4 relative z-10">
         <div class="text-center mb-16">
